@@ -1,0 +1,10 @@
+﻿<ion-view title="{{subctrl.folder}}" ng-controller="SubjectsController as subctrl">
+    <ion-content class="has-header">
+        <ul class="list">
+            <li class="item" ng-repeat="subject in subctrl.subjectlist" ng-click="subctrl.openMessage(subject.id, subject.subject, subject.sender, subject.date)">
+                <h2>{{ subject.subject}} </h2>
+                <p>{{subject.sender}}, {{subject.date}}</p>
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>

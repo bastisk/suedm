@@ -1,0 +1,9 @@
+﻿<ion-view title="Ordner" ng-controller="FoldersController as fldctrl">
+    <ion-content class="has-header">
+        <ul class="list">
+            <li class="item" ng-repeat="folder in fldctrl.folderlist" ng-click="fldctrl.openFolder(folder.name)">
+                {{ folder.name}}
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>
