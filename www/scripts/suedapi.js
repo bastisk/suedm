@@ -1,9 +1,9 @@
-﻿//Jquery Handler for Sued:Board API
+//Jquery Handler for Sued:Board API
 /* V.0.1 by Basti SK 2015
 *
 * tl;dr: Fuck yeah, I'm using callbacks. Deal with it ! ^^
 */
-var ApiURL = "http://api.suedboard.tk/call_api.php"
+var ApiURL = "/api/board"
 
 
 function checkLogin(username, password, apikey, callback) {
