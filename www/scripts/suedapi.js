@@ -3,7 +3,7 @@
 *
 * tl;dr: Fuck yeah, I'm using callbacks. Deal with it ! ^^
 */
-var ApiURL = "/api/board"
+var ApiURL = "http://api.suedboard.tk/call_api.php"
 
 
 function checkLogin(username, password, apikey, callback) {

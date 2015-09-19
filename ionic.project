@@ -1,8 +1,4 @@
 {
   "name": "SuedM",
-  "app_id": "",
-  "proxies": [{
-    "path": "/api/board",
-    "proxyUrl": "http://api.suedboard.tk/call_api.php"
-  }]
+  "app_id": ""
 }
