@@ -1,5 +1,8 @@
-﻿var app = angular.module('app', ['ionic']);
-app.config(function ($stateProvider, $urlRouterProvider) {
+var app = angular.module('app', ['ionic']);
+app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    
+        $ionicConfigProvider.tabs.position("bottom");
+        $ionicConfigProvider.navBar.alignTitle("center");
 
         // Ionic uses AngularUI Router which uses the concept of states
         // Learn more here: https://github.com/angular-ui/ui-router
