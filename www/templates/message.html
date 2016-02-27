@@ -1,12 +1,11 @@
-﻿<ion-view title="{{mesctrl.meta.subject}}" ng-controller="MessageController as mesctrl">
+<ion-view title="Shoutbox" cache-view="false">
+  <ion-nav-buttons side="right">
+      <a class="button button-clear button-positive" ng-href="#/tab/neu">Antworten</a>
+      </button>
+   </ion-nav-buttons>
     <ion-content class="has-header">
         <div class="card">
-            <div class="item item-divider">
-                <h3>{{mesctrl.meta.subject}}</h3>
-                <p>{{mesctrl.meta.sender}}, {{mesctrl.meta.date}}</p>
-            </div>
-            <div class="item item-text-wrap" ng-bind-html="mesctrl.message | html_fix"></div>
+          <div class="item item-text-wrap" ng-bind-html="message | html_fix"></div>
         </div>
-        
     </ion-content>
 </ion-view>

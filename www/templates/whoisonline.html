@@ -1,0 +1,9 @@
+<ion-view title="Who Is Online">
+    <ion-content class="has-header">
+        <ion-list>
+          <ion-item ng-repeat="user in users">
+          {{user.user}} - {{user.date}}
+          </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

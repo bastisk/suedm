@@ -1,0 +1,21 @@
+<ion-view title="Neue Nachricht">
+  <ion-content class="has-header">
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">Empfänger</div>
+        <select ng-model="message.receipient">
+            <option ng-repeat="user in users">{{user.name}}</option>
+        </select>
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Betreff" ng-model="message.subject">
+      </label>
+      <label class="item item-input">
+        <textarea placeholder="Nachricht" rows="8" ng-model="message.text"></textarea>
+      </label>
+    </div>
+    <button class="button button-full button-positive" ng-click="send()">
+        Senden
+    </button>
+  </ion-content>
+</ion-view>

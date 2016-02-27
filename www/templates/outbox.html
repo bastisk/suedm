@@ -1,8 +1,8 @@
-﻿<ion-view title="{{foldername}}">
+<ion-view title="Outbox">
     <ion-content class="has-header">
         <ul class="list">
             <ion-item class="item" ng-repeat="subject in subjects" ng-href="#/tab/messages/{{subject.id}}">
-                <h2>{{ subject.subject}} </h2>
+                <h2><span ng-show="subject.new" class="ion-ionic positive"></span> {{ subject.subject}} </h2>
                 <p>{{subject.sender}}, {{subject.date}}</p>
             </ion-item>
         </ul>

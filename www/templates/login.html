@@ -1,22 +1,20 @@
-<ion-view title="Sued:M" ng-controller="LoginController as logctrl" hide-back-button="true" hide-tabs>
+<ion-view title="Sued:M Mobile" hide-back-button="true" hide-tabs>
     <ion-content class="has-header">
-        <center><h1>Sued:Board Mobile</h1></center>
         <div class="list">
-            <label class="item item-input item-floating-label">
+            <label class="item item-input">
                 <span class="input-label">Benutzername</span>
-                <input type="text" placeholder="Benutzername" ng-model="logctrl.username">
+                <input type="text" placeholder="Benutzername" ng-model="user.username">
             </label>
-            <label class="item item-input item-floating-label">
+            <label class="item item-input">
                 <span class="input-label">Passwort</span>
-                <input type="password" placeholder="Passwort" ng-model="logctrl.password">
+                <input type="password" placeholder="Passwort" ng-model="user.password">
             </label>
-            <label class="item item-input item-floating-label">
-                <span class="input-label">API Key</span>
-                <input type="text" placeholder="API Key" ng-model="logctrl.apikey" />
-            </label>
-            <button class="button button-full button-balanced" ng-click="logctrl.join()">
+            <ion-checkbox ng-model="user.save">Passwort speichern</ion-checkbox>
+            <button class="button button-full button-positive" ng-click="join()">
                 Login
             </button>
         </div>
+        <center><span>by Sebastian Kiepsch 2016</span></center>
+        <center><span>v.0.2</span></center>
     </ion-content>
 </ion-view>

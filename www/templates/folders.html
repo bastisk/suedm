@@ -1,9 +1,21 @@
-﻿<ion-view title="Ordner" ng-controller="FoldersController as fldctrl">
+<ion-view title="Nachrichten">
+  <ion-nav-buttons side="right">
+      <a class="button button-clear button-positive" ng-href="#/tab/neu">Neu</a>
+      </button>
+   </ion-nav-buttons>
     <ion-content class="has-header">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
         <ul class="list">
-            <li class="item" ng-repeat="folder in fldctrl.folderlist" ng-click="fldctrl.openFolder(folder.name)">
+            <ion-item ng-href="#/tab/inbox" class="item-icon-left">
+              <i class="icon ion-archive"></i> Inbox ({{newmcount}})
+            </ion-item>
+            <ion-item ng-href="#/tab/outbox" class="item-icon-left">
+              <i class="icon ion-paper-airplane"></i> Outbox
+            </ion-item>
+            <ion-item class="item item-divider ion-folder"> Meine Ordner</ion-item>
+            <ion-item ng-repeat="folder in folders" ng-href="#/tab/folders/{{folder.name}}">
                 {{ folder.name}}
-            </li>
+            </ion-item>
         </ul>
     </ion-content>
 </ion-view>

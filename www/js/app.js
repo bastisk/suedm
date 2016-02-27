@@ -1,11 +1,19 @@
-// Ionic Starter App
+angular.module('suedm', ['ionic', 'suedm.controllers', 'suedm.services'])
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+
+//Set Content Header for API - kill0rz API can't handle application/json :/
+.config(function($httpProvider) {
+  $httpProvider.defaults.headers.post['Content-Type'] =
+    'application/x-www-form-urlencoded';
+
+  //Transform Parameter Data into suitable format
+  $httpProvider.defaults.transformRequest = function(data) {
+    if (data === undefined) {
+      return data;
+    }
+    return $.param(data);
+  }
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,62 +32,98 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
-
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
-
-  // Each tab has its own nav history stack:
-
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+    })
+    .state('tabs.folders', {
+      url: "/folders",
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'menuContent': {
+          templateUrl: "templates/folders.html",
+          controller: "FoldersCtrl"
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tabs.settings', {
+      url: "/settings",
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'menuContent': {
+          templateUrl: "templates/settings.html",
+          controller: "SettingsCtrl"
         }
       }
     })
-
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+    .state('tabs.subjects', {
+      url: "/folders/:folder",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/subjects.html",
+          controller: "SubjectsCtrl"
+        }
       }
-    }
-  });
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
-
+    })
+    .state('tabs.message', {
+      url: "/messages/:msgId",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/message.html",
+          controller: "MessageCtrl"
+        }
+      }
+    })
+    .state('tabs.inbox', {
+      url: "/inbox",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/inbox.html",
+          controller: "InboxCtrl"
+        }
+      }
+    })
+    .state('tabs.outbox', {
+      url: "/outbox",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/outbox.html",
+          controller: "OutboxCtrl"
+        }
+      }
+    })
+    .state('tabs.shoutbox', {
+      url: "/shoutbox",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/shoutbox.html",
+          controller: "ShoutboxCtrl"
+        }
+      }
+    })
+    .state('tabs.whois', {
+      url: '/whois',
+      views: {
+        'menuContent': {
+          templateUrl: "templates/whoisonline.html",
+          controller: "WhoIsOnlineCtrl"
+        }
+      }
+    })
+    .state('tabs.neu', {
+      url: '/neu',
+      views: {
+        'menuContent': {
+          templateUrl: "templates/neuenachricht.html",
+          controller: "NeuCtrl"
+        }
+      }
+    })
+    .state('tabs', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html',
+      controller: 'MenuCtrl'
+    });
+  $urlRouterProvider.otherwise('/login');
 });

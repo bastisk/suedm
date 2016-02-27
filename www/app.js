@@ -1,6 +1,6 @@
 var app = angular.module('app', ['ionic']);
 app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-    
+
         $ionicConfigProvider.tabs.position("bottom");
         $ionicConfigProvider.navBar.alignTitle("center");
 
@@ -12,7 +12,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
         .state('login', {
                 url: '/login',
-                templateUrl: 'templates/login.html'
+                templateUrl: 'templates/login.html',
+                controller: 'LoginCtrl'
             })
         .state('tabs.folders', {
             url: "/folders",
@@ -20,7 +21,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
                 'folders': {
                     templateUrl: "templates/folders.html"
                 }
-            }  
+            }
         })
         .state('tabs.settings', {
             url: "/settings",
@@ -56,37 +57,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         $urlRouterProvider.otherwise('/login');
     });
 
-app.controller('LoginController', function ($state, $sanitize) {
-    var self = this;
-
-    var init = function () {
-        var username = localStorage.getItem('username');
-        var password = localStorage.getItem('password');
-        var apikey = localStorage.getItem('apikey');
-        if ((username != null) && (password != null) && (apikey != null)) {
-            checkLogin(username, password, apikey, function getState(state) {
-                if (state) $state.go('tabs.folders');
-                else $state.go('login');
-            });
-        }
-    }
-
-    self.join = function () {
-        var username = $sanitize(self.username);
-        var password = $sanitize(self.password);
-        var apikey = $sanitize(self.apikey);
-        var save = $sanitize(self.save);
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
-        localStorage.setItem('apikey', apikey);
-        checkLogin(username, password, apikey, function getState(state) {
-            if (state) $state.go('tabs.folders');
-        });
-    }
-
-    init();
-
-});
 
 app.controller('FoldersController', function ($state, $sanitize, SubjectsService) {
     var self = this;
@@ -104,7 +74,7 @@ app.controller('FoldersController', function ($state, $sanitize, SubjectsService
         $state.go('tabs.subjects');
     }
     init();
-    
+
 });
 
 app.controller('SettingsController', function ($state, $sanitize) {
