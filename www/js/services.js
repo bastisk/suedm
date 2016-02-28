@@ -1,4 +1,4 @@
-var baseurl = ''; //removed for privacy reasons
+var baseurl = 'https://suedboard.tk/api/call_api.php'; //removed for privacy reasons
 var apikey = '123456'; //temporary API Key - valid for all users...
 angular.module('suedm.services', [])
 
