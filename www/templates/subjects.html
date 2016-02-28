@@ -1,7 +1,8 @@
 ﻿<ion-view title="{{foldername}}">
     <ion-content class="has-header">
+      <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
         <ul class="list">
-            <ion-item class="item" ng-repeat="subject in subjects" ng-href="#/tab/messages/{{subject.id}}">
+            <ion-item class="item" ng-repeat="subject in subjects" ng-href="#/tab/folders/{{foldername}}/{{subject.id}}" ng-click="open({{subject}})">
                 <h2>{{ subject.subject}} </h2>
                 <p>{{subject.sender}}, {{subject.date}}</p>
             </ion-item>

@@ -3,7 +3,7 @@
     <div class="list">
       <label class="item item-input item-select">
         <div class="input-label">Empfänger</div>
-        <select ng-model="message.receipient">
+        <select ng-model="message.recipient">
             <option ng-repeat="user in users">{{user.name}}</option>
         </select>
       </label>
@@ -14,7 +14,7 @@
         <textarea placeholder="Nachricht" rows="8" ng-model="message.text"></textarea>
       </label>
     </div>
-    <button class="button button-full button-positive" ng-click="send()">
+    <button class="button button-block button-calm" ng-click="send()">
         Senden
     </button>
   </ion-content>

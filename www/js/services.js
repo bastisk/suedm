@@ -132,7 +132,7 @@ angular.module('suedm.services', [])
     });
   }
 
-  API.sendmessage = function(subject, message, receipient) {
+  API.sendmessage = function(subject, message, recipient) {
     return $http.post(baseurl, {
       user: UserService.username,
       pw: UserService.password,
@@ -140,7 +140,7 @@ angular.module('suedm.services', [])
       action: 'sendmessage',
       subject: subject,
       message: message,
-      receipient: receipient
+      recipient: recipient
     });
   }
 
@@ -192,6 +192,28 @@ angular.module('suedm.services', [])
       apikey: apikey,
       action: 'readmessage_message',
       msgID: id
+    });
+  }
+
+  API.getmessageinbox = function(id) {
+    return $http.post(baseurl, {
+      user: UserService.username,
+      pw: UserService.password,
+      apikey: apikey,
+      action: 'readmessage_message',
+      msgID: id,
+      inbox: 'true'
+    });
+  }
+
+  API.getmessageoutbox = function(id) {
+    return $http.post(baseurl, {
+      user: UserService.username,
+      pw: UserService.password,
+      apikey: apikey,
+      action: 'readmessage_message',
+      msgID: id,
+      outbox: 'true'
     });
   }
 
@@ -255,6 +277,7 @@ angular.module('suedm.services', [])
   this.sender;
   this.subject;
   this.date;
+  this.text;
 })
 
 //Filter to enable HTML trust

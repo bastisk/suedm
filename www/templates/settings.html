@@ -1,8 +1,16 @@
-﻿<ion-view title="Sued:M Home" ng-controller="SettingsController as setctrl">
-    <ion-content class="has-header">
-        <ul class="list">
-            <li class="item-divider">Funktionen</li>
-            <li class="item" ng-click="setctrl.logout()">Logout</li>
-        </ul>
-    </ion-content>
+<ion-view title="Einstellungen" ng-controller="SettingsController as setctrl">
+  <ion-content class="has-header">
+    <ul class="list">
+      <li class="item item-toggle">
+        Passwort speichern
+        <label class="toggle toggle-calm">
+          <input type="checkbox" ng-model="save" ng-change="savechange(save)">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+
+    </ul>
+  </ion-content>
 </ion-view>

@@ -1,15 +1,15 @@
 <ion-view title="Nachrichten">
   <ion-nav-buttons side="right">
-      <a class="button button-clear button-positive" ng-href="#/tab/neu">Neu</a>
+      <a class="button button-clear button-calm" ng-href="#/tab/write/new">Neu</a>
       </button>
    </ion-nav-buttons>
     <ion-content class="has-header">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
         <ul class="list">
-            <ion-item ng-href="#/tab/inbox" class="item-icon-left">
+            <ion-item ng-href="#/tab/folders/inbox" class="item item-icon-left">
               <i class="icon ion-archive"></i> Inbox ({{newmcount}})
             </ion-item>
-            <ion-item ng-href="#/tab/outbox" class="item-icon-left">
+            <ion-item ng-href="#/tab/folders/outbox" class="item item-icon-left">
               <i class="icon ion-paper-airplane"></i> Outbox
             </ion-item>
             <ion-item class="item item-divider ion-folder"> Meine Ordner</ion-item>

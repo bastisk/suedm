@@ -66,7 +66,7 @@ angular.module('suedm', ['ionic', 'suedm.controllers', 'suedm.services'])
       }
     })
     .state('tabs.message', {
-      url: "/messages/:msgId",
+      url: "/folders/:folder/:msgId",
       views: {
         'menuContent': {
           templateUrl: "templates/message.html",
@@ -111,7 +111,7 @@ angular.module('suedm', ['ionic', 'suedm.controllers', 'suedm.services'])
       }
     })
     .state('tabs.neu', {
-      url: '/neu',
+      url: '/write/:type',
       views: {
         'menuContent': {
           templateUrl: "templates/neuenachricht.html",

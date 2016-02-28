@@ -1,5 +1,6 @@
 <ion-view title="Shoutbox" cache-view="false">
     <ion-content class="has-header">
+      <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
       <div class="item item-input-inset">
         <label class="item-input-wrapper">
           <input type="text" placeholder="Neuer Eintrag" ng-model="shout.message">
