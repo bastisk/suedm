@@ -188,9 +188,7 @@ angular.module('suedm.controllers', [])
         $scope.shout = [];
         API.getshoutbox().success(function(response) {
           var response = response.split('200')[1];
-          console.log(response);
           response = atob(response);
-          console.log(response);
           var shoutbox = response.split('<table style="width:100%;text-align:left;" border="0">')[1];
           var shoutbox = shoutbox.split('</table>')[0];
           var rows = shoutbox.split("<tr>");
@@ -253,7 +251,6 @@ angular.module('suedm.controllers', [])
       init();
 
       $scope.send = function() {
-        console.log($scope.message);
         API.sendmessage($scope.message.subject, $scope.message.text, $scope.message.recipient).success(function(response) {
           if(response == "200"){
             MessageService.MsgId = "";
@@ -280,7 +277,6 @@ angular.module('suedm.controllers', [])
 
       $scope.savechange = function(save){
         if(save == true){
-          console.log("on");
           localStorage.setItem('username', UserService.username);
           localStorage.setItem('password', UserService.password); //TB Fixed - very insecure!!!!
         } else {
@@ -294,6 +290,7 @@ angular.module('suedm.controllers', [])
     .controller('MessageCtrl', function($state, $sanitize, API, $scope, $stateParams, MessageService) {
       var init = function() {
         $scope.meta = MessageService;
+
         if($stateParams.folder == "inbox"){
           API.getmessageinbox($stateParams.msgId).success(function(response) {
             $scope.message = atob(response.substr(3));
@@ -309,6 +306,7 @@ angular.module('suedm.controllers', [])
             $scope.message = atob(response.substr(3));
           });
         }
+
       }
       init();
 
