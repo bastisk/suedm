@@ -3,7 +3,7 @@
       <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
         <ul class="list">
             <ion-item class="item" ng-repeat="subject in subjects" ng-href="#/tab/folders/{{foldername}}/{{subject.id}}" ng-click="open({{subject}})">
-                <h2>{{ subject.subject}} </h2>
+                <h2><span ng-show="subject.new" class="ion-ionic positive"></span>{{ subject.subject}} </h2>
                 <p>{{subject.sender}}, {{subject.date}}</p>
             </ion-item>
         </ul>

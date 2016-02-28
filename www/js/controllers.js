@@ -187,7 +187,11 @@ angular.module('suedm.controllers', [])
       var init = function() {
         $scope.shout = [];
         API.getshoutbox().success(function(response) {
-          var shoutbox = response.split('200<table style="width:100%;text-align:left;" border="0">')[1];
+          var response = response.split('200')[1];
+          console.log(response);
+          response = atob(response);
+          console.log(response);
+          var shoutbox = response.split('<table style="width:100%;text-align:left;" border="0">')[1];
           var shoutbox = shoutbox.split('</table>')[0];
           var rows = shoutbox.split("<tr>");
           var entities = [];
@@ -243,22 +247,25 @@ angular.module('suedm.controllers', [])
             $scope.message.text = "\n\n--------Original Message------------\nSend by: " + MessageService.sender + "\nDate: " + MessageService.date + "\n\n" + MessageService.text;
             $scope.message.subject = "RE: " + MessageService.subject;
             $scope.message.recipient = MessageService.sender;
-            }
+          }
         });
       }
       init();
 
       $scope.send = function() {
+        console.log($scope.message);
         API.sendmessage($scope.message.subject, $scope.message.text, $scope.message.recipient).success(function(response) {
-          if(response == "200")
-          $state.go('tabs.folders');
+          if(response == "200"){
+            MessageService.MsgId = "";
+            MessageService.sender = "";
+            MessageService.subject = "";
+            MessageService.date = "";
+            MessageService.text = "";
+            $state.go('tabs.folders');
+          }
+
           else alert(response);
         });
-        MessageService.MsgId = "";
-        MessageService.sender = "";
-        MessageService.subject = "";
-        MessageService.date = "";
-        MessageService.text = "";
       }
 
     })
@@ -289,17 +296,17 @@ angular.module('suedm.controllers', [])
         $scope.meta = MessageService;
         if($stateParams.folder == "inbox"){
           API.getmessageinbox($stateParams.msgId).success(function(response) {
-            $scope.message = response.substr(3);
+            $scope.message = atob(response.substr(3));
           });
         }
         else if ($stateParams.folder == "outbox"){
           API.getmessageoutbox($stateParams.msgId).success(function(response) {
-            $scope.message = response.substr(3);
+            $scope.message = atob(response.substr(3));
           });
         }
         else {
           API.getmessage($stateParams.msgId).success(function(response) {
-            $scope.message = response.substr(3);
+            $scope.message = atob(response.substr(3));
           });
         }
       }

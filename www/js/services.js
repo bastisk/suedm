@@ -8,6 +8,7 @@ angular.module('suedm.services', [])
 
   Helper.parseFolders = function(serverresponse) {
     var folderstring = serverresponse.split("200");
+    folderstring[1] = atob(folderstring[1]);
     var folderarray = folderstring[1].split("\n");
     var output = [];
     for (var i = 0; i < folderarray.length - 1; i++) {
@@ -47,6 +48,7 @@ angular.module('suedm.services', [])
 
   Helper.parseSubjects = function(serverresponse) {
     var folderstring = serverresponse.substring(3);
+    folderstring = atob(folderstring);
     var folderarray = folderstring.split("\n");
     var output = [];
     for (var i = 0; i < folderarray.length - 1; i++) {
@@ -64,6 +66,7 @@ angular.module('suedm.services', [])
   Helper.parseWhoIs = function(response) {
     var output = [];
     var payload = response.substring(3);
+    payload = atob(payload);
     var elements = payload.split("\n");
     for (var i = 0; i < elements.length - 1; i++) {
       output.push({
@@ -78,6 +81,7 @@ angular.module('suedm.services', [])
   Helper.parseUsers = function(response) {
     var output = [];
     var payload = response.substring(3);
+    payload = atob(payload);
     var elements = payload.split("\n");
     for (var i = 0; i < elements.length - 1; i++) {
       output.push({
@@ -138,9 +142,9 @@ angular.module('suedm.services', [])
       pw: UserService.password,
       apikey: apikey,
       action: 'sendmessage',
-      subject: subject,
-      message: message,
-      recipient: recipient
+      subject: btoa(subject),
+      message: btoa(message),
+      recipient: btoa(recipient)
     });
   }
 
@@ -232,7 +236,7 @@ angular.module('suedm.services', [])
       pw: UserService.password,
       apikey: apikey,
       action: 'write_shoutbox',
-      shoutbox_message: message
+      shoutbox_message: btoa(message)
     });
   }
 
